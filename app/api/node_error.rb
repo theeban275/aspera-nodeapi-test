@@ -1,0 +1,1 @@
+class NodeError < RuntimeError; end
