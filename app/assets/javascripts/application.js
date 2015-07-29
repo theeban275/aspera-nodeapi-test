@@ -51,8 +51,9 @@ $(document).ready(function() {
     $.post('/shares/download_setup', {file: file}, function(data) {
       transfer_spec = data['transfer_specs'][0]['transfer_spec'];
       connect_settings = {
-        "allow dialogs": "no"
       }
+      transfer_spec['remote_user'] = 'aspera';
+      transfer_spec['authentication'] = 'token';
       console.log('starting transfer');
       console.log(transfer_spec);
       asperaWeb.startTransfer(transfer_spec, connect_settings, {
@@ -61,7 +62,6 @@ $(document).ready(function() {
           alert('download failed.');
         },
         success: function() {
-          alert('download completed.');
         }
       });
     });
